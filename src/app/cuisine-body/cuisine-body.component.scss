@@ -1,0 +1,66 @@
+.cuisine-body {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    .spacer {
+      flex: 1 1 auto;
+    }
+
+    // todo: fix for mobile
+    .mat-sidenav {
+      max-width: 100vw;
+      width: 30vw;
+      &--mobile {
+        width: 80vw;
+      }
+    }
+  }
+  &__sidenav {
+    &__search {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      // width: 100%;
+
+      &__button {
+        margin: 1rem 0;
+      }
+    }
+    // &__search__input {
+    //   width: 100%;
+    // }
+  }
+  &__toolbar {
+    .mat-slide-toggle {
+      font-weight: 300;
+      font-size: 0.8rem;
+    }
+  }
+  &__is-mobile &__toolbar {
+    position: fixed;
+    z-index: 2;
+  }
+
+  &__app-name {
+    margin-left: 8px;
+    font-weight: 300;
+  }
+
+  &__sidenav-container {
+    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+    flex: 1;
+  }
+
+  &__is-mobile &__sidenav-container {
+    /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+     `<body>` to be our scrolling element for mobile layouts. */
+    flex: 1 0 auto;
+  }
+}

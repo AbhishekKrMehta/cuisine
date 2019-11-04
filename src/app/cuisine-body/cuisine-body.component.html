@@ -1,0 +1,56 @@
+<div class="cuisine-body__container" [class.cuisine-body__is-mobile]="mobileQuery.matches">
+    <mat-toolbar color="primary" class="cuisine-body__toolbar">
+        <button mat-icon-button (click)="snav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <h1 class="cuisine-body__app-name">TURKISH CUISINE</h1>
+        <span class="spacer"></span>
+        <mat-slide-toggle [(ngModel)]="useMockData" (change)="onToggle()">
+            <span *ngIf="!mobileQuery.matches">Use mock data</span>
+        </mat-slide-toggle>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="cuisine-body__sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+        <mat-sidenav #snav [opened]="!mobileQuery.matches" [mode]="mobileQuery.matches ? 'over' : 'side'"
+            [fixedInViewport]="mobileQuery.matches" [class.mat-sidenav--mobile]="mobileQuery.matches" fixedTopGap="56">
+
+            <form [formGroup]="searchForm" (ngSubmit)="onFormSubmit()" autocomplete="off"
+                class="cuisine-body__sidenav__search">
+                <mat-form-field>
+                    <input matInput placeholder="I'm looking for..." formControlName="userInput">
+                    <mat-error *ngIf="userInput.invalid">{{ getErrorMessage() }}</mat-error>
+                </mat-form-field>
+                <button type="submit" [disabled]="!searchForm.valid" mat-raised-button color="primary"
+                    class="cuisine-body__sidenav__search__button">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon>
+                    SEARCH
+                </button>
+
+                <div *ngIf="searchActive">
+                    <p>{{ searchResult }}</p>
+                    <mat-chip-list>
+                        <mat-chip [selectable]="true" [removable]="true" color="accent" selected
+                            (removed)="clearSearch()">
+                            Clear search
+                            <mat-icon matChipRemove>cancel</mat-icon>
+                        </mat-chip>
+                    </mat-chip-list>
+                </div>
+            </form>
+
+            <mat-nav-list dense>
+                <!-- <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a> -->
+                <a mat-list-item *ngFor="let recipe of recipeList" (click)="getRecipeDetails(recipe.id)" href="#">
+                    <img *ngIf="!mobileQuery.matches" matListAvatar [src]="recipe.imageUrls[0]" alt="recipe-image">
+                    <h4 mat-line>{{recipe.title}}</h4>
+                    <h6 *ngIf="!mobileQuery.matches" mat-line>Time to cook: {{recipe.readyInMinutes}} mins</h6>
+                    <mat-divider></mat-divider>
+                </a>
+            </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <app-recipe-details [recipeDetails]="recipeDetails"></app-recipe-details>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

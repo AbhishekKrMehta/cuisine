@@ -1,0 +1,64 @@
+<div class="recipe-details__container">
+    <div class="recipe-details__content hidden" [class.visible]="showAnimation">
+        <ng-container *ngIf="noRecipeSelected; else recipeSelected">
+            <div class="recipe-details__not-selected">
+                <mat-card class="recipe-details__not-selected__card">
+                    <h1 class="recipe-details__not-selected__card__heading">
+                        {{ 'Welcome to Turkish Cuisine Collection!' | uppercase }}</h1>
+                    <h3>Here you can find recipe of your favourite dish.</h3>
+                    <p>You can start by selecting a dish from the left panel or use the search option if you're looking
+                        for something in particular.</p>
+                </mat-card>
+            </div>
+        </ng-container>
+
+        <ng-template #recipeSelected>
+            <div class="recipe-details__selected">
+                <div class="recipe-details__primary-row">
+                    <!-- recipe basic details -->
+                    <mat-card tabindex="0" class="recipe-details__card-basics">
+                        <mat-card-header>
+                            <div mat-card-avatar [ngClass]="recipeDetails.vegetarian ? 'recipe-details__card-basics__header-image--veg' :
+                             'recipe-details__card-basics__header-image--non-veg'">
+                            </div>
+                            <mat-card-title>{{ recipeDetails.title }}</mat-card-title>
+                            <mat-card-subtitle>{{ recipeDetails.vegetarian ? 'Vegetarian' : 'Non-vegetarian' }}
+                            </mat-card-subtitle>
+                        </mat-card-header>
+                        <img mat-card-image [src]="recipeDetails.image" alt="dish type"
+                            class="recipe-details__card-basics__image">
+                        <mat-card-content>
+                            <p class="mat-caption">Publication date: {{ publicationDate | date:'longDate' }}</p>
+                        </mat-card-content>
+                        <!-- <mat-card-actions>
+                            <button mat-button>View details</button>
+                        </mat-card-actions> -->
+                    </mat-card>
+
+                    <!-- ingredients -->
+                    <mat-card tabindex="0" class="recipe-details__card-ingredient">
+                        <mat-card-title>Ingredients ({{ recipeDetails.servings }} servings)</mat-card-title>
+                        <hr>
+                        <mat-card-content>
+                            <ul>
+                                <li *ngFor="let ingredient of ingredientList">{{ ingredient }}</li>
+                            </ul>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+
+                <!-- instructions -->
+                <mat-card tabindex="0" class="recipe-details__card-instruction">
+                    <mat-card-title>Cooking instructions</mat-card-title>
+                    <hr>
+                    <mat-card-content>
+                        <ol>
+                            <li *ngFor="let instruction of instructionList">{{ instruction }}</li>
+                        </ol>
+                    </mat-card-content>
+                </mat-card>
+
+            </div>
+        </ng-template>
+    </div>
+</div>

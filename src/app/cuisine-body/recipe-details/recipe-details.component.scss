@@ -1,0 +1,88 @@
+.recipe-details {
+  &__container {
+    min-height: 100%;
+    background: url("../../../assets/images/recipe-details-background_7.jpg") no-repeat center center fixed;
+    background-size: cover;
+
+    .mat-card {
+      margin: 2rem;
+      background: rgba(255, 255, 255, 0.85);
+      color: #424242;
+      transition: 0.4s;
+
+      .mat-card-title {
+        color: #c2185a;
+        text-transform: uppercase;
+        font-weight: 100;
+        font-size: 20px;
+      }
+      .mat-card-subtitle {
+        color: rgba(0, 0, 0, 0.54);
+      }
+    }
+    .mat-card:hover {
+      background: white;
+    }
+  }
+
+  &__not-selected {
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &__card {
+      text-align: center;
+      &__heading {
+        color: #c2185a;
+      }
+    }
+  }
+
+  &__primary-row {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* tablet, landscape iPad, lo-res laptops ands desktops */
+    @media (min-width: 961px) {
+      flex-direction: row;
+    }
+  }
+
+  &__card-basics {
+    flex: 1;
+    &__header-image {
+      &--veg {
+        background-image: url(../../../assets/images/veg-icon.png);
+        background-size: cover;
+      }
+      &--non-veg {
+        background-image: url(../../../assets/images/non-veg-icon.png);
+        background-size: cover;
+      }
+    }
+  }
+
+  &__card-ingredient {
+    flex: 1;
+  }
+
+  &__card-instruction {
+    margin-bottom: 0 !important;
+  }
+}
+
+.hidden {
+  // visibility: hidden;
+  opacity: 0;
+  // transition: all 2s linear;
+  // position: relative;
+  // right: -50px;
+}
+
+.visible {
+  // visibility: visible;
+  opacity: 1;
+  transition: all 0.5s ease-in;
+  // position: relative;
+  // right: 0;
+}

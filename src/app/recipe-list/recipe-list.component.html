@@ -5,7 +5,7 @@
         </button>
         <h1 class="cuisine-body__app-name">TURKISH CUISINE</h1>
         <span class="spacer"></span>
-        <mat-slide-toggle [(ngModel)]="useMockData" (change)="onToggle()" ngDefaultControl>
+        <mat-slide-toggle [(ngModel)]="useMockData" (change)="getRecipeList()" ngDefaultControl>
             <span *ngIf="!mobileQuery.matches">Use mock data</span>
         </mat-slide-toggle>
     </mat-toolbar>
@@ -40,7 +40,7 @@
 
             <mat-nav-list dense>
                 <!-- <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a> -->
-                <a mat-list-item *ngFor="let recipe of recipeList" (click)="getRecipeDetails(recipe.id)" href="#">
+                <a mat-list-item *ngFor="let recipe of recipeList" (click)="getRecipeDetails(recipe.id)" href="javascript:void(0)">
                     <img *ngIf="!mobileQuery.matches" matListAvatar [src]="recipe.imageUrls[0]" alt="recipe-image">
                     <h4 mat-line>{{recipe.title}}</h4>
                     <h6 *ngIf="!mobileQuery.matches" mat-line>Time to cook: {{recipe.readyInMinutes}} mins</h6>

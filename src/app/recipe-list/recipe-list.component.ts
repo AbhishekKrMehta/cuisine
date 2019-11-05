@@ -49,27 +49,6 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     return this.searchForm.get('userInput');
   }
 
-  getRecipeList(): void {
-    this.cuisineService.getRecipeList()
-      .subscribe(
-        data => {
-          this.originalRecipeList = data.results || [];
-          this.recipeList = data.results || [];
-          const baseUri = data.baseUri;
-          if (this.recipeList.length) {
-            this.recipeList.map(recipe => {
-              recipe.imageUrls[0] = `${baseUri}${recipe.imageUrls[0]}`;
-              return recipe;
-            })
-          }
-        },
-        error => {
-          this.error = error
-          console.log(`An error occurred: ${error}`);
-        }
-      );
-  }
-
   getRecipeDetails(recipeId: number): void {
     if (this.useMockData) {
       this.recipeDetails = recipeDetailsMock.find(recipe => recipe.id === recipeId)
@@ -85,13 +64,30 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     }
   }
 
-  onToggle(): void {
+  getRecipeList(): void {
     this.recipeDetails = {};
     if (this.useMockData) {
       this.originalRecipeList = recipeListMock;
       this.recipeList = recipeListMock;
     } else {
-      this.getRecipeList();
+      this.cuisineService.getRecipeList()
+        .subscribe(
+          data => {
+            this.originalRecipeList = data.results || [];
+            this.recipeList = data.results || [];
+            const baseUri = data.baseUri;
+            if (this.recipeList.length) {
+              this.recipeList.map(recipe => {
+                recipe.imageUrls[0] = `${baseUri}${recipe.imageUrls[0]}`;
+                return recipe;
+              })
+            }
+          },
+          error => {
+            this.error = error
+            console.log(`An error occurred: ${error}`);
+          }
+        );
     }
     this._snackBar.open(`You are now using ${this.useMockData ? 'mock' : 'real time'} data`, '', {
       duration: 4000

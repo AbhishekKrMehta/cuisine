@@ -8,9 +8,9 @@ import { CuisineService } from '../cuisine.service';
 import { recipeListMock } from "src/mock-data/recipe-list.mock";
 import { recipeDetailsMock } from 'src/mock-data/recipe-details.mock';
 @Component({
-  selector: 'app-cuisine-body',
-  templateUrl: './cuisine-body.component.html',
-  styleUrls: ['./cuisine-body.component.scss']
+  selector: 'app-recipe-list',
+  templateUrl: './recipe-list.component.html',
+  styleUrls: ['./recipe-list.component.scss']
 })
 export class RecipeListComponent implements OnInit, OnDestroy {
 
@@ -42,9 +42,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
-    // todo uncomment below
-    // this.getRecipeList();
-    this.onToggle();
+    this.getRecipeList();
   }
 
   get userInput(): AbstractControl {

@@ -12,8 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DemoMaterialModule } from './material-module';
 
 // Components import
-import { RecipeDetailsComponent } from './cuisine-body/recipe-details/recipe-details.component';
-import { RecipeListComponent } from './cuisine-body/cuisine-body.component';
+import { RecipeDetailsComponent } from './recipe-list/recipe-details/recipe-details.component';
+import { RecipeListComponent } from './recipe-list/recipe-list.component';
 
 @NgModule({
   declarations: [

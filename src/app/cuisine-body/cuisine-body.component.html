@@ -5,7 +5,7 @@
         </button>
         <h1 class="cuisine-body__app-name">TURKISH CUISINE</h1>
         <span class="spacer"></span>
-        <mat-slide-toggle [(ngModel)]="useMockData" (change)="onToggle()">
+        <mat-slide-toggle [(ngModel)]="useMockData" (change)="onToggle()" ngDefaultControl>
             <span *ngIf="!mobileQuery.matches">Use mock data</span>
         </mat-slide-toggle>
     </mat-toolbar>

@@ -12,7 +12,7 @@ import { recipeDetailsMock } from 'src/mock-data/recipe-details.mock';
   templateUrl: './cuisine-body.component.html',
   styleUrls: ['./cuisine-body.component.scss']
 })
-export class CuisineBodyComponent implements OnInit, OnDestroy {
+export class RecipeListComponent implements OnInit, OnDestroy {
 
   recipeList: Array<any>;
   originalRecipeList: Array<any>;

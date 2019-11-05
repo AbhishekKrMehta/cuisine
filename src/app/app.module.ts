@@ -10,17 +10,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 // Angular material imports
 import { DemoMaterialModule } from './material-module';
-import { HeaderComponent } from './header/header.component';
+
+// Components import
 import { RecipeDetailsComponent } from './cuisine-body/recipe-details/recipe-details.component';
-import { CuisineBodyComponent } from './cuisine-body/cuisine-body.component';
-import { FooterComponent } from './footer/footer.component';
+import { RecipeListComponent } from './cuisine-body/cuisine-body.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    CuisineBodyComponent,
+    RecipeListComponent,
     RecipeDetailsComponent
   ],
   imports: [

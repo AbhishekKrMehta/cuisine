@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 import { CuisineService } from '../cuisine.service';
-import { recipeListMock } from "src/mock-data/recipe-list.mock";
+import { recipeListMock } from 'src/mock-data/recipe-list.mock';
 import { recipeDetailsMock } from 'src/mock-data/recipe-details.mock';
 @Component({
   selector: 'app-recipe-list',
@@ -28,7 +28,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
 
   constructor(
-    private cuisineService: CuisineService,
+    public cuisineService: CuisineService,
     private changeDetectorRef: ChangeDetectorRef,
     private media: MediaMatcher,
     private formBuilder: FormBuilder,
@@ -49,21 +49,6 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     return this.searchForm.get('userInput');
   }
 
-  getRecipeDetails(recipeId: number): void {
-    if (this.useMockData) {
-      this.recipeDetails = recipeDetailsMock.find(recipe => recipe.id === recipeId)
-    } else {
-      this.cuisineService.getRecipeDetails(recipeId).subscribe(
-        recipe => {
-          this.recipeDetails = recipe;
-        },
-        error => {
-          this.error = error
-          console.log(`An error occurred: ${error}`);
-        })
-    }
-  }
-
   getRecipeList(): void {
     this.recipeDetails = {};
     if (this.useMockData) {
@@ -80,11 +65,11 @@ export class RecipeListComponent implements OnInit, OnDestroy {
               this.recipeList.map(recipe => {
                 recipe.imageUrls[0] = `${baseUri}${recipe.imageUrls[0]}`;
                 return recipe;
-              })
+              });
             }
           },
           error => {
-            this.error = error
+            this.error = error;
             console.log(`An error occurred: ${error}`);
           }
         );
@@ -92,6 +77,21 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     this._snackBar.open(`You are now using ${this.useMockData ? 'mock' : 'real time'} data`, '', {
       duration: 4000
     });
+  }
+
+  getRecipeDetails(recipeId: number): void {
+    if (this.useMockData) {
+      this.recipeDetails = recipeDetailsMock.find(recipe => recipe.id === recipeId);
+    } else {
+      this.cuisineService.getRecipeDetails(recipeId).subscribe(
+        recipe => {
+          this.recipeDetails = recipe;
+        },
+        error => {
+          this.error = error;
+          console.log(`An error occurred: ${error}`);
+        });
+    }
   }
 
   getErrorMessage(): string {
@@ -107,9 +107,9 @@ export class RecipeListComponent implements OnInit, OnDestroy {
       return recipe.title && recipe.title.toLowerCase().includes(userInput);
     });
     if (this.recipeList.length) {
-      this.searchResult = `Search results for "${userInput}":`
+      this.searchResult = `Search results for "${userInput}":`;
     } else {
-      this.searchResult = 'Sorry we could not find a match. Please try with a different keyword.'
+      this.searchResult = 'Sorry we could not find a match. Please try with a different keyword.';
     }
   }
 

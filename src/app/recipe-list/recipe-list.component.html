@@ -22,7 +22,7 @@
                 </mat-form-field>
                 <button type="submit" [disabled]="!searchForm.valid" mat-raised-button color="primary"
                     class="cuisine-body__sidenav__search__button">
-                    <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon>
+                    <mat-icon aria-hidden="false" aria-label="search icon">search</mat-icon>
                     SEARCH
                 </button>
 
@@ -39,8 +39,10 @@
             </form>
 
             <mat-nav-list dense>
-                <!-- <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a> -->
-                <a mat-list-item *ngFor="let recipe of recipeList" (click)="getRecipeDetails(recipe.id)" href="javascript:void(0)">
+                <!-- <a mat-list-item *ngFor="let recipe of recipeList" (click)="getRecipeDetails(recipe.id)" href="javascript:void(0)"> -->
+                <a mat-list-item *ngFor="let recipe of recipeList"
+                    (click)="getRecipeDetails(recipe.id); mobileQuery.matches && snav.close()"
+                    href="javascript:void(0)">
                     <img *ngIf="!mobileQuery.matches" matListAvatar [src]="recipe.imageUrls[0]" alt="recipe-image">
                     <h4 mat-line>{{recipe.title}}</h4>
                     <h6 *ngIf="!mobileQuery.matches" mat-line>Time to cook: {{recipe.readyInMinutes}} mins</h6>

@@ -13,7 +13,6 @@ export class CuisineService {
   constructor(private httpClient: HttpClient) { }
 
   getRecipeList(): Observable<any> {
-    console.log("making API call");
     const getCuisineListUrl = `https://api.spoonacular.com/recipes/search?cuisine=MiddleEastern&number=50&instructionsRequired=true&apiKey=${this.apiKey}`;
     return this.httpClient.get(getCuisineListUrl)
       .pipe(
@@ -22,7 +21,6 @@ export class CuisineService {
   }
 
   getRecipeDetails(recipeId: number): Observable<any> {
-    console.log("making API call");
     const getRecipeDetailsUrl = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${this.apiKey}`;
     return this.httpClient.get(getRecipeDetailsUrl)
       .pipe(
@@ -30,9 +28,8 @@ export class CuisineService {
       );
   }
 
-  // todo: usee this
+  // todo: use this function to make similar recipe list
   getSimilarRecipeList(recipeId: number): Observable<any> {
-    console.log("making API call");
     const getRecipeDetailsUrl = `https://api.spoonacular.com/recipes/${recipeId}/similar?apiKey=${this.apiKey}`;
     return this.httpClient.get(getRecipeDetailsUrl)
       .pipe(
@@ -50,5 +47,5 @@ export class CuisineService {
     }
     return throwError(
       'Something bad happened; please try again later.');
-  };
+  }
 }

@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { MediaMatcher } from '@angular/cdk/layout';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 
 import { CuisineService } from '../cuisine.service';
-import { recipeListMock } from 'src/mock-data/recipe-list.mock';
 import { recipeDetailsMock } from 'src/mock-data/recipe-details.mock';
+import { recipeListMock } from 'src/mock-data/recipe-list.mock';
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
@@ -14,16 +14,16 @@ import { recipeDetailsMock } from 'src/mock-data/recipe-details.mock';
 })
 export class RecipeListComponent implements OnInit, OnDestroy {
 
-  recipeList: Array<any>;
-  originalRecipeList: Array<any>;
   error: string;
-  mobileQuery: MediaQueryList;
-  recipeDetails = {};
   fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
-  useMockData = true;
-  searchForm: FormGroup;
+  mobileQuery: MediaQueryList;
+  originalRecipeList: Array<any>;
+  recipeDetails = {};
+  recipeList: Array<any>;
   searchActive = false;
+  searchForm: FormGroup;
   searchResult = '';
+  useMockData = true;
   private _mobileQueryListener: () => void;
 
 

@@ -9,10 +9,10 @@ export class RecipeDetailsComponent implements OnChanges {
 
   @Input() recipeDetails: any = {};
   ingredientList: Array<any>;
-  noRecipeSelected = true;
-  showAnimation = false;
-  publicationDate: Date;
   instructionList: Array<any>;
+  noRecipeSelected = true;
+  publicationDate: Date;
+  showAnimation = false;
 
   ngOnChanges() {
     this.showAnimation = false;
